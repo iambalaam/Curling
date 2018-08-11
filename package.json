@@ -1,0 +1,21 @@
+{
+  "name": "Curling",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iambalaam/Curling.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iambalaam/Curling/issues"
+  },
+  "homepage": "https://github.com/iambalaam/Curling#readme",
+  "dependencies": {}
+}
