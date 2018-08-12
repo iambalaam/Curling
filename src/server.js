@@ -3,12 +3,12 @@ const {parse} = require('url');
 const PORT = 8000;
 
 const state = {x: 2, y: 2};
-state.toString = () => {
+state.toString = (color) => {
     let str = '';
     for (let j = 0; j < 5; j++) {
         for (let i = 0; i < 5; i++) {
             if (i === state.x && j === state.y) {
-                str += '[x]';
+                str += color ? `[${'X'.toColor(color)}]` :'[X]';
             } else {
                 str += '[ ]';
             }
@@ -17,6 +17,14 @@ state.toString = () => {
     }
     return str;
 }
+
+const colorToANSI = (color) => {
+    switch (color) {
+        case 'red': return '31'
+        default: throw new Error(`Unknown color: "${color}"`);
+    }
+}
+String.prototype.toColor = function(color) {return `[${colorToANSI(color)}m${this}[0m`}
 
 const updateState = (action) => {
     switch (action) {
@@ -55,7 +63,7 @@ http.createServer((req, res) => {
     try {
         updateState(parseReq(req));
         res.writeHead(200);
-        res.write(state.toString());
+        res.write(state.toString('red'));
         res.end();
     } catch (e) {
         res.writeHead(500)
