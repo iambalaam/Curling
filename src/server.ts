@@ -1,23 +1,12 @@
-const http = require('http');
-const {parse} = require('url');
+import {createServer} from 'http';
+import {parse} from 'url';
 const PORT = 8000;
 
-const state = {x: 2, y: 2};
-state.toString = (color) => {
-    let str = '';
-    for (let j = 0; j < 5; j++) {
-        for (let i = 0; i < 5; i++) {
-            if (i === state.x && j === state.y) {
-                str += color ? `[${'X'.toColor(color)}]` :'[X]';
-            } else {
-                str += '[ ]';
-            }
-        }
-        str += '\n';
+declare global {
+    interface String {
+        toColor(color: string): string;
     }
-    return str;
 }
-
 const colorToANSI = (color) => {
     switch (color) {
         case 'red': return '31'
@@ -25,6 +14,32 @@ const colorToANSI = (color) => {
     }
 }
 String.prototype.toColor = function(color) {return `[${colorToANSI(color)}m${this}[0m`}
+
+
+interface GameState {
+    x: number,
+    y: number,
+    toString: (color?: string) => string
+}
+
+const state: GameState = {
+    x: 2,
+    y: 2,
+    toString: (color) => {
+        let str = '';
+        for (let j = 0; j < 5; j++) {
+            for (let i = 0; i < 5; i++) {
+                if (i === state.x && j === state.y) {
+                    str += color ? `[${'X'.toColor(color)}]` : '[X]';
+                } else {
+                    str += '[ ]';
+                }
+            }
+            str += '\n';
+        }
+        return str;
+    }
+};
 
 const updateState = (action) => {
     switch (action) {
@@ -59,7 +74,7 @@ const validateAction = (str) => {
     }
 }
 
-http.createServer((req, res) => {
+createServer((req, res) => {
     try {
         updateState(parseReq(req));
         res.writeHead(200);
@@ -70,4 +85,3 @@ http.createServer((req, res) => {
         res.end(`${e.message}\n`);
     }
 }).listen(PORT || process.env.port);
-

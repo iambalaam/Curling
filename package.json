@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run build && node build/server.js",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -17,5 +18,9 @@
     "url": "https://github.com/iambalaam/Curling/issues"
   },
   "homepage": "https://github.com/iambalaam/Curling#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^10.5.8",
+    "typescript": "^3.0.1"
+  }
 }
