@@ -3,6 +3,14 @@
         "lib": [
             "esnext"
         ],
+        "types": [
+            "node",
+            "jest"
+        ],
         "outDir": "build"
-    }
+    },
+    "files": [
+        "src/server.ts",
+        "src/global.d.ts"
+    ]
 }
