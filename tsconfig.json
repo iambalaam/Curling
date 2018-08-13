@@ -10,7 +10,7 @@
         "outDir": "build"
     },
     "files": [
-        "src/server.ts",
-        "src/global.d.ts"
+        "src/global.d.ts",
+        "src/server.ts"
     ]
 }

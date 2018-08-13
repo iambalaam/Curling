@@ -1,5 +1,5 @@
-import * as colors from  '../colors';
-import '../../global';
+import * as colors from '../colors';
+
 
 describe('colorToANSI()', () => {
     it('has red', () => {
@@ -12,9 +12,9 @@ describe('colorToANSI()', () => {
 
 describe('String.prototype.toColor', () => {
     it('exists', () => {
-        expect(String.prototype.toColor).not.toBeUndefined()
+        expect((<any>String.prototype).toColor).not.toBeUndefined()
     })
     it('colors text', () => {
-        expect('text'.toColor('red')).toBe('[31mtext[0m')
+        expect((<any>'text').toColor('red')).toBe('[31mtext[0m')
     })
 })
