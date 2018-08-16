@@ -43,7 +43,7 @@ export const proTip = (message) => {
         .map(line => `|  ${line + Array(width - line.length - 6).fill(' ').join('')}  |`).join('\n');
     const bottom = `|${Array(width - 2).fill('_').join('')}|`;
     const bunny = '(\\__/) ||\n'+
-                  '(•ㅅ•)  ||\n' +
+                  '(•ㅅ•) ||\n' +
                   '/ 　 づ'
     return `${top}\n${middle}\n${bottom}\n${bunny}\n`;
 };
